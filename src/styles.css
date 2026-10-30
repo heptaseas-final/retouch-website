@@ -1,0 +1,818 @@
+/* ---------------------------------------------------------------------------
+   Tokens
+
+   The Swift app is the source of truth for color, not the written brief. These
+   three values come straight from Color+App.swift in the Heptaseas-C7 project,
+   so the site and the app cannot drift apart.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --plum-900: #5a0a28; /* appTitle, headings. 13.2:1 on --bg */
+  --brand: #963c60; /* appMagenta, buttons and links. 6.4:1 on --bg */
+  --ink-700: #454546; /* appInactive, utility and body text */
+  --rose-600: #8f5571; /* secondary text, 5.4:1 on --bg */
+  --rose-300: #b77a9a; /* decorative only, 3.2:1, too light for body text */
+  --blush-100: #f3e4eb; /* cards */
+  --blush-50: #faf0f4; /* tints */
+  --bg: #fbf8fa;
+  --surface: #ffffff;
+
+  /* SF Pro through the system stack, never self-hosted. Apple's licence
+     allows SF Pro only for mock-ups of Apple-platform UI and forbids
+     embedding it in other products, so shipping a woff2 would breach it.
+     Apple platforms resolve this to real SF Pro; elsewhere it falls back. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui,
+    sans-serif;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+  --step-4: clamp(2.5rem, 1.8rem + 3.4vw, 4.6rem);
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 1px 2px rgb(90 10 40 / 0.04),
+    0 8px 24px rgb(90 10 40 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(90 10 40 / 0.06),
+    0 18px 48px rgb(90 10 40 / 0.12);
+
+  --container: 68rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--plum-900);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The page sits on a soft blush wash that pools toward the lower right, the
+   same gradient direction as the gloss on the app icon. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+      120% 90% at 100% 100%,
+      var(--blush-100) 0%,
+      rgb(243 228 235 / 0) 60%
+    ),
+    radial-gradient(90% 70% at 0% 0%, var(--blush-50) 0%, rgb(250 240 244 / 0) 55%);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--brand);
+  text-underline-offset: 0.2em;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-md);
+  top: var(--space-xs);
+  z-index: 100;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--surface);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------------
+   Layout primitives
+   --------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.band {
+  padding-block: var(--space-xl);
+}
+
+.band-tight {
+  padding-block: var(--space-lg);
+}
+
+@media (min-width: 60rem) {
+  .band {
+    padding-block: var(--space-2xl);
+  }
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rose-600);
+}
+
+.lede {
+  font-size: var(--step-1);
+  color: var(--rose-600);
+  max-width: 34ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Signature: the mirror sheen
+   The app icon is a glass mirror with a single diagonal gloss running across
+   it. That gloss is the one decorative motif this site reuses, on the phone
+   glass and on the primary button.
+   --------------------------------------------------------------------------- */
+
+.sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    rgb(255 255 255 / 0) 42%,
+    rgb(255 255 255 / 0.42) 50%,
+    rgb(255 255 255 / 0) 58%
+  );
+  transform: translateX(-60%);
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 3rem;
+  padding: 0.75rem 1.75rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-primary:hover::after {
+  transform: translateX(60%);
+  transition: transform 900ms ease;
+}
+
+.btn-disabled {
+  background: var(--blush-100);
+  color: var(--rose-600);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Header and footer
+   --------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgb(251 248 250 / 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgb(183 122 154 / 0.18);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: 4rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  flex: none;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  /* Keeps the hit area at or above the 24px WCAG 2.2 minimum target size. */
+  min-height: 2.75rem;
+  padding-inline: 0.25rem;
+  color: var(--rose-600);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.site-footer {
+  margin-top: var(--space-2xl);
+  border-top: 1px solid rgb(183 122 154 / 0.2);
+  padding-block: var(--space-lg);
+  font-size: var(--step--1);
+  color: var(--rose-600);
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 0.25rem;
+}
+
+@media (min-width: 48rem) {
+  .site-footer .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Phone frame
+   --------------------------------------------------------------------------- */
+
+.phone {
+  --phone-width: 11rem;
+  position: relative;
+  width: var(--phone-width);
+  aspect-ratio: 9 / 19.5;
+  flex: none;
+  padding: 0.5rem;
+  border-radius: 2.6rem;
+  background: linear-gradient(160deg, #d9d2d6 0%, #8e8489 45%, #cfc7cc 100%);
+  box-shadow: var(--shadow-lift);
+}
+
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2.15rem;
+  background: var(--plum-900);
+}
+
+.phone-screen video,
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.phone-island {
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 3;
+  width: 32%;
+  height: 1.3rem;
+  border-radius: var(--radius-pill);
+  background: #0d0d0f;
+}
+
+.phone-tilt-left {
+  rotate: -8deg;
+}
+
+.phone-tilt-right {
+  rotate: 5deg;
+}
+
+@media (min-width: 30rem) {
+  .phone {
+    --phone-width: 13rem;
+  }
+  .media-missing {
+    width: 13rem;
+  }
+}
+
+@media (min-width: 52rem) {
+  .phone {
+    --phone-width: 15rem;
+  }
+  .media-missing {
+    width: 15rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------------- */
+
+.hero .container {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.hero-title {
+  font-size: var(--step-4);
+  color: var(--plum-900);
+  max-width: 14ch;
+}
+
+.hero-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--space-md);
+}
+
+.hero-wordmark img {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 0.9rem;
+}
+
+.hero-wordmark span {
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--brand);
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.hero-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+}
+
+/* One visual only on a narrow screen. Matches any slot type, framed clip or
+   placeholder, so the hero never shows two cramped halves side by side. */
+.hero-stage > *:nth-child(2) {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .hero-stage > *:nth-child(2) {
+    display: block;
+    margin-left: -3.5rem;
+    margin-top: 3rem;
+  }
+}
+
+@media (min-width: 60rem) {
+  .hero .container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-title {
+    font-size: var(--step-4);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hook
+   --------------------------------------------------------------------------- */
+
+.hook {
+  text-align: center;
+}
+
+.hook-question {
+  font-size: var(--step-3);
+  color: var(--plum-900);
+  margin-inline: auto;
+  max-width: 18ch;
+}
+
+.hook-answer {
+  margin-top: var(--space-md);
+  margin-inline: auto;
+  font-size: var(--step-1);
+  color: var(--rose-600);
+  max-width: 30ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Features
+   --------------------------------------------------------------------------- */
+
+.feature-list {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.feature {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+  justify-items: center;
+}
+
+.feature-copy {
+  display: grid;
+  gap: var(--space-xs);
+  justify-items: start;
+  max-width: 28ch;
+}
+
+.feature-label {
+  font-size: var(--step-2);
+  color: var(--brand);
+}
+
+.feature-caption {
+  font-size: var(--step-1);
+  color: var(--rose-600);
+}
+
+@media (min-width: 52rem) {
+  .feature {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+  .feature-copy {
+    justify-self: start;
+  }
+  .feature-reverse .feature-media {
+    order: -1;
+  }
+}
+
+/* An unframed clip: used when the footage already shows a phone in a scene. */
+.media-card {
+  width: 100%;
+  max-width: 22rem;
+  border-radius: var(--radius-lg);
+  background: var(--plum-900);
+  box-shadow: var(--shadow-lift);
+}
+
+.media-card video,
+.media-card img {
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   Media slot placeholder
+   --------------------------------------------------------------------------- */
+
+.media-missing {
+  display: grid;
+  place-content: center;
+  gap: var(--space-xs);
+  width: 11rem;
+  aspect-ratio: 9 / 19.5;
+  padding: var(--space-md);
+  border: 2px dashed var(--rose-300);
+  border-radius: 2.6rem;
+  background: var(--blush-50);
+  text-align: center;
+}
+
+.media-missing strong {
+  color: var(--brand);
+  font-size: var(--step-0);
+}
+
+.media-missing span {
+  color: var(--rose-600);
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+
+/* ---------------------------------------------------------------------------
+   Smooth zoom band
+   --------------------------------------------------------------------------- */
+
+.smooth {
+  background: var(--plum-900);
+  color: var(--blush-50);
+  text-align: center;
+}
+
+.smooth p {
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-inline: auto;
+  max-width: 20ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Roadmap
+   --------------------------------------------------------------------------- */
+
+.roadmap-line {
+  font-size: var(--step-2);
+  color: var(--plum-900);
+  max-width: 24ch;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: 0;
+  list-style: none;
+}
+
+.roadmap-item {
+  display: grid;
+  gap: 0.15rem;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.roadmap-item strong {
+  font-size: var(--step-0);
+  color: var(--plum-900);
+}
+
+.roadmap-item span {
+  font-size: var(--step--1);
+  color: var(--rose-600);
+}
+
+/* ---------------------------------------------------------------------------
+   Final call to action
+   --------------------------------------------------------------------------- */
+
+.final-cta {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: center;
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--blush-100);
+}
+
+.final-cta h2 {
+  font-size: var(--step-3);
+  max-width: 16ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Article pages (support, privacy)
+   --------------------------------------------------------------------------- */
+
+.page-header {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 44ch;
+}
+
+.page-title {
+  font-size: var(--step-3);
+}
+
+.prose {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: 62ch;
+  margin-top: var(--space-lg);
+}
+
+.prose h2 {
+  font-size: var(--step-1);
+  color: var(--brand);
+  margin-bottom: var(--space-xs);
+}
+
+.prose p {
+  color: var(--ink-700);
+}
+
+.meta {
+  font-size: var(--step--1);
+  color: var(--rose-600);
+}
+
+.notice {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--blush-100);
+  color: var(--plum-900);
+  font-size: var(--step--1);
+}
+
+/* ---------------------------------------------------------------------------
+   FAQ accordion
+   --------------------------------------------------------------------------- */
+
+.faq {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 48rem;
+  margin-top: var(--space-lg);
+}
+
+.faq-item {
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md);
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--plum-900);
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-marker {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--blush-100);
+  color: var(--brand);
+  font-size: var(--step-0);
+  line-height: 1;
+  transition: rotate 200ms ease;
+}
+
+.faq-question[aria-expanded="true"] .faq-marker {
+  rotate: 45deg;
+}
+
+.faq-answer {
+  padding: 0 var(--space-md) var(--space-md);
+  color: var(--ink-700);
+  max-width: 60ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion preferences
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO(owner): add a Sitemap line once the real domain is confirmed, and
+# regenerate public/sitemap.xml with it. Both were removed rather than shipped
+# pointing at an unregistered domain.
