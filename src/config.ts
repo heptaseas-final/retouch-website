@@ -14,7 +14,7 @@ export const APP_LINK = "https://testflight.apple.com/join/a6sEP244";
  * privacy pages show a notice instead of a broken mailto: link. This is a
  * known, accepted launch blocker, recorded in docs/PRD.md.
  */
-export const SUPPORT_EMAIL = "SUPPORT_EMAIL_NOT_SET";
+export const SUPPORT_EMAIL = "ibdpidada26@bsd.idserve.net";
 
 export const OWNER_NAME = "Heptaseas";
 
@@ -24,7 +24,7 @@ export const OWNER_NAME = "Heptaseas";
  * TODO(owner): no domain has been registered or confirmed. The same token
  * appears in index.html. Grep for DOMAIN_NOT_SET before deploying.
  */
-export const SITE_URL = "https://DOMAIN_NOT_SET";
+export const SITE_URL = "https://retouch-mirror.vercel.app/";
 
 /** Shown as "Last updated" on the privacy page. */
 export const PRIVACY_LAST_UPDATED = "30 October 2026";
