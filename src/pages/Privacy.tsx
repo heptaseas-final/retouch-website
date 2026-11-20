@@ -10,7 +10,7 @@ export default function Privacy() {
   useDocumentMeta({
     title: "Retouch Privacy Policy",
     description:
-      "Retouch processes the camera on your device only. No recording, no accounts, no analytics, no advertising, and no data shared with third parties.",
+      "What Retouch does with your camera, photos, and analytics data: camera processing stays on your device, and Mixpanel analytics receives a random device identifier and usage data.",
     path: "/privacy",
   });
 
@@ -27,7 +27,26 @@ export default function Privacy() {
           {privacy.sections.map((section) => (
             <section key={section.heading}>
               <h2>{section.heading}</h2>
-              <p>{section.body}</p>
+              <p>
+                {section.body}
+                {section.link && (
+                  <>
+                    {" "}
+                    <a href={section.link} target="_blank" rel="noopener noreferrer">
+                      {section.link}
+                    </a>
+                    .
+                  </>
+                )}
+              </p>
+              {section.items && (
+                <ul>
+                  {section.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {section.after && <p>{section.after}</p>}
             </section>
           ))}
 

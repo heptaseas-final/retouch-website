@@ -8,13 +8,10 @@ export const APP_LINK = "https://testflight.apple.com/join/a6sEP244";
 
 /**
  * Public support address. Shown on /support and in the footer, and referenced
- * by the privacy policy.
- *
- * TODO(owner): not chosen yet. While it holds this value the support and
- * privacy pages show a notice instead of a broken mailto: link. This is a
- * known, accepted launch blocker, recorded in docs/PRD.md.
+ * by the privacy policy. If it loses its "@", the support and privacy pages
+ * show a notice instead of a broken mailto: link.
  */
-export const SUPPORT_EMAIL = "ibdpidada26@bsd.idserve.net";
+export const SUPPORT_EMAIL = "mirrorretouch@gmail.com";
 
 export const OWNER_NAME = "Heptaseas";
 
@@ -27,7 +24,7 @@ export const OWNER_NAME = "Heptaseas";
 export const SITE_URL = "https://retouch-mirror.vercel.app/";
 
 /** Shown as "Last updated" on the privacy page. */
-export const PRIVACY_LAST_UPDATED = "30 October 2026";
+export const PRIVACY_LAST_UPDATED = "20 November 2026";
 
 /** True when the support address still holds its placeholder value. */
 export const hasSupportEmail = SUPPORT_EMAIL.includes("@");

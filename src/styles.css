@@ -724,6 +724,18 @@ video {
   color: var(--ink-700);
 }
 
+.prose ul {
+  display: grid;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0;
+  padding-left: 1.25em;
+  color: var(--ink-700);
+}
+
+.prose p + p {
+  margin-top: var(--space-sm);
+}
+
 .meta {
   font-size: var(--step--1);
   color: var(--rose-600);

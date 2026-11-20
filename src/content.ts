@@ -105,7 +105,7 @@ export const finalCta = {
 export const faq = [
   {
     q: "Why does the camera need permission?",
-    a: "Only to show you the mirror. The camera feed stays on your device. Nothing is saved and nothing is sent anywhere.",
+    a: "Only to show you the mirror and to adjust zoom and lighting. The camera feed is processed on your device, and Retouch does not upload photos or video.",
   },
   {
     q: "Why is the screen brighter in dark places?",
@@ -117,7 +117,7 @@ export const faq = [
   },
   {
     q: "Does Retouch save my photos?",
-    a: "No. Retouch does not record, save, or transmit photos or video.",
+    a: "Only if you tap Save on a highlight. It goes to your Photos library, and Retouch can add items but cannot read your library. Retouch does not upload photos or video.",
   },
   {
     q: "Which devices are supported?",
@@ -132,31 +132,59 @@ export const faq = [
 export const privacy = {
   title: "Privacy Policy for Retouch",
   intro:
-    "Retouch is an iOS app that works as a beauty mirror. This policy explains what the app does with your information.",
+    "Retouch is an iOS app that works as a beauty mirror. It is made by Heptaseas. This policy explains what the app does with your information.",
   sections: [
     {
       heading: "Camera",
-      body: "Retouch uses the front camera to display a live mirror view and to adjust zoom and lighting. All camera processing happens on your device. Retouch does not record, save, or transmit photos or video.",
+      body: "Retouch uses the front camera to display a live mirror view and to adjust zoom and lighting. Camera video, face and hand tracking, and tool detection are processed on your device. Retouch does not upload photos or video.",
     },
     {
-      heading: "Data collection",
-      body: "Retouch does not collect, store, or share personal data. The app has no account system and no analytics.",
-    },
-    {
-      heading: "Third parties",
-      body: "Retouch contains no advertising and does not share data with third parties.",
+      heading: "Photos",
+      body: "If you tap Save on a highlight, Retouch saves it to your Photos library. This uses add-only permission: Retouch can add items but cannot read your library. Saved highlights stay on your device.",
     },
     {
       heading: "Screen brightness",
       body: "The app may temporarily raise your screen brightness in dim places and restores your original brightness when you leave the app.",
     },
     {
+      heading: "Information we collect",
+      body: "Retouch has no account system and does not ask for your name, email, or phone number. To understand how the app is used and to improve it, we use Mixpanel analytics, which receives:",
+      items: [
+        "A random device identifier (not linked to your name or account)",
+        "Approximate location (city, region, and country, derived from your IP address)",
+        "Device and app information (model, iOS version, app version, screen size, carrier, Wi-Fi status)",
+        "Usage events (such as opening the mirror, using auto zoom, changing light color, and completing onboarding)",
+        "Technical data (such as device heat state and face brightness reading)",
+      ],
+      after:
+        "We use this data only for analytics. We do not use it for advertising, do not sell it, and do not combine it with other companies' data to track you.",
+    },
+    {
+      heading: "Third parties",
+      body: "Retouch contains no advertising. Analytics data is processed by Mixpanel on its servers, which may be outside Indonesia. See Mixpanel's privacy policy at",
+      link: "https://mixpanel.com/legal/privacy-policy",
+    },
+    {
+      heading: "Retention and your choices",
+      body: "Analytics data is kept for 12 months. To ask us to delete the analytics data linked to your device, email us at the address below.",
+    },
+    {
+      heading: "Your rights",
+      body: "You may ask us to access, correct, or delete your data, or withdraw your consent, in line with applicable law, including Indonesia's Personal Data Protection Law (Law No. 27 of 2022).",
+    },
+    {
       heading: "Children",
-      body: "Retouch does not knowingly collect information from anyone, including children.",
+      body: "Retouch is not directed at children and we do not knowingly collect personal information from children.",
     },
     {
       heading: "Changes",
       body: "If this policy changes, the updated version will be posted on this page with a new date.",
     },
-  ],
+  ] as {
+    heading: string;
+    body: string;
+    items?: string[];
+    after?: string;
+    link?: string;
+  }[],
 };
