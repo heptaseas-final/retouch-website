@@ -1,7 +1,7 @@
 import CtaButton from "../components/CtaButton";
 import MediaSlot from "../components/MediaSlot";
 import useDocumentMeta from "../useDocumentMeta";
-import appIcon from "../assets/app-icon.svg";
+import appIcon from "../assets/app-icon.png";
 import {
   features,
   finalCta,

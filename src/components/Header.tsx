@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import appIcon from "../assets/app-icon.svg";
+import appIcon from "../assets/app-icon.png";
 
 export default function Header() {
   return (
