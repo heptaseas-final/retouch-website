@@ -15,7 +15,7 @@ export default function Footer() {
           {hasSupportEmail && <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>}
         </nav>
         <p>
-          &copy; {year} {OWNER_NAME}. Retouch is made for iPhone.
+          &copy; {year} {OWNER_NAME}. Re-touch is made for iPhone.
         </p>
       </div>
     </footer>

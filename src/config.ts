@@ -3,7 +3,7 @@
  * before launch. Nothing else in the app should hard-code these.
  */
 
-/** TestFlight link for the "Try Retouch" button. */
+/** TestFlight link for the "Try Re-touch" button. */
 export const APP_LINK = "https://apps.apple.com/id/app/re-touch-the-better-mirror/id6827142921";
 
 /**
@@ -16,12 +16,14 @@ export const SUPPORT_EMAIL = "mirrorretouch@gmail.com";
 export const OWNER_NAME = "Heptaseas";
 
 /**
- * Absolute origin, used for canonical links and Open Graph URLs.
+ * Absolute origin, used for canonical links and Open Graph URLs. No trailing
+ * slash: useDocumentMeta appends a path that already begins with one, and a
+ * slash here produced a doubled canonical URL on the home page.
  *
- * TODO(owner): no domain has been registered or confirmed. The same token
- * appears in index.html. Grep for DOMAIN_NOT_SET before deploying.
+ * The same origin is hardcoded in index.html, which social scrapers read
+ * directly rather than running the app. Change the two together.
  */
-export const SITE_URL = "https://retouch-mirror.vercel.app/";
+export const SITE_URL = "https://retouch-mirror.vercel.app";
 
 /** Shown as "Last updated" on the privacy page. */
 export const PRIVACY_LAST_UPDATED = "20 November 2026";

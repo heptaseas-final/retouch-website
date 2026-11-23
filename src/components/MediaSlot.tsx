@@ -35,6 +35,8 @@ type Props = {
    * "phone" wraps the clip in a device frame, for screen recordings.
    * "card" leaves it unframed, for clips that already show a scene with a
    * phone in it. Framing one of those again gives you a phone inside a phone.
+   * The card is also where the features spend their one ornament, the
+   * perforated stamp edge.
    */
   variant?: "phone" | "card";
 };
@@ -69,7 +71,7 @@ export default function MediaSlot({ media, tilt, variant = "phone" }: Props) {
     );
 
   if (variant === "card") {
-    return <div className="media-card sheen">{inner}</div>;
+    return <div className="media-card sheen stamp-edge">{inner}</div>;
   }
 
   const tiltClass = tilt ? ` phone-tilt-${tilt}` : "";

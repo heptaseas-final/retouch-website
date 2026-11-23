@@ -21,10 +21,10 @@ export type Media =
   | { kind: "missing"; label: string; note: string };
 
 export const hero = {
-  headline: "Turn your phone into a real mirror with Retouch.",
+  headline: "Turn your phone into a real mirror with Re-touch.",
   description:
-    "An ergonomic beauty mirror for on-the-go makeup, with gesture zoom, auto lighting, and true-to-eye shades, so your blush never goes invisible again.",
-  cta: "Try Retouch",
+    "An ergonomic beauty mirror for on-the-go makeup, with gesture zoom, auto lighting, and no beauty filter, so your blush never goes invisible again.",
+  cta: "Try Re-touch",
   media: {
     kind: "video",
     src: zoomEyeLoop,
@@ -55,7 +55,7 @@ export const features: Feature[] = [
   {
     id: "zoom",
     label: "Zoom",
-    caption: "Hold the brush near your eye. Retouch zooms in for you.",
+    caption: "Hold the brush near your eye. Re-touch zooms in for you.",
     media: {
       kind: "video",
       src: zoomEyeLoop,
@@ -65,7 +65,7 @@ export const features: Feature[] = [
   {
     id: "light",
     label: "Light",
-    caption: "Dim spot? Retouch lights you up.",
+    caption: "Dim spot? Re-touch lights you up.",
     frame: "card",
     media: {
       kind: "video",
@@ -99,25 +99,25 @@ export const roadmap = {
 
 export const finalCta = {
   headline: "Try it on your own face.",
-  cta: "Try Retouch",
+  cta: "Try Re-touch",
 };
 
 export const faq = [
   {
     q: "Why does the camera need permission?",
-    a: "Only to show you the mirror and to adjust zoom and lighting. The camera feed is processed on your device, and Retouch does not upload photos or video.",
+    a: "Only to show you the mirror and to adjust zoom and lighting. The camera feed is processed on your device, and Re-touch does not upload photos or video.",
   },
   {
     q: "Why is the screen brighter in dark places?",
-    a: "That is auto lighting. In a dim spot Retouch raises the screen brightness and turns on an edge light so you can see your face. Your original brightness comes back when you leave the app.",
+    a: "That is auto lighting. In a dim spot Re-touch raises the screen brightness and turns on an edge light so you can see your face. Your original brightness comes back when you leave the app.",
   },
   {
     q: "How does gesture zoom work?",
     a: "Hold a brush near an eye or near your lips and the view zooms to that feature. Turning your head zooms to that side of your face.",
   },
   {
-    q: "Does Retouch save my photos?",
-    a: "Only if you tap Save on a highlight. It goes to your Photos library, and Retouch can add items but cannot read your library. Retouch does not upload photos or video.",
+    q: "Does Re-touch save my photos?",
+    a: "Only if you tap Save on a highlight. Kept only for the replay. Saved only if you download it. It goes to your Photos library, and Re-touch can add items but cannot read your library. Re-touch does not upload photos or video.",
   },
   {
     q: "Which devices are supported?",
@@ -130,17 +130,17 @@ export const faq = [
 ];
 
 export const privacy = {
-  title: "Privacy Policy for Retouch",
+  title: "Privacy Policy for Re-touch",
   intro:
-    "Retouch is an iOS app that works as a beauty mirror. It is made by Heptaseas. This policy explains what the app does with your information.",
+    "Re-touch is an iOS app that works as a beauty mirror. It is made by Heptaseas. This policy explains what the app does with your information.",
   sections: [
     {
       heading: "Camera",
-      body: "Retouch uses the front camera to display a live mirror view and to adjust zoom and lighting. Camera video, face and hand tracking, and tool detection are processed on your device. Retouch does not upload photos or video.",
+      body: "Re-touch uses the front camera to display a live mirror view and to adjust zoom and lighting. Camera video, face and hand tracking, and tool detection are processed on your device. Re-touch does not upload photos or video.",
     },
     {
       heading: "Photos",
-      body: "If you tap Save on a highlight, Retouch saves it to your Photos library. This uses add-only permission: Retouch can add items but cannot read your library. Saved highlights stay on your device.",
+      body: "If you tap Save on a highlight, Re-touch saves it to your Photos library. This uses add-only permission: Re-touch can add items but cannot read your library. Saved highlights stay on your device.",
     },
     {
       heading: "Screen brightness",
@@ -148,7 +148,7 @@ export const privacy = {
     },
     {
       heading: "Information we collect",
-      body: "Retouch has no account system and does not ask for your name, email, or phone number. To understand how the app is used and to improve it, we use Mixpanel analytics, which receives:",
+      body: "Re-touch has no account system and does not ask for your name, email, or phone number. To understand how the app is used and to improve it, we use Mixpanel analytics, which receives:",
       items: [
         "A random device identifier (not linked to your name or account)",
         "Approximate location (city, region, and country, derived from your IP address)",
@@ -161,7 +161,7 @@ export const privacy = {
     },
     {
       heading: "Third parties",
-      body: "Retouch contains no advertising. Analytics data is processed by Mixpanel on its servers, which may be outside Indonesia. See Mixpanel's privacy policy at",
+      body: "Re-touch contains no advertising. Analytics data is processed by Mixpanel on its servers, which may be outside Indonesia. See Mixpanel's privacy policy at",
       link: "https://mixpanel.com/legal/privacy-policy",
     },
     {
@@ -174,7 +174,7 @@ export const privacy = {
     },
     {
       heading: "Children",
-      body: "Retouch is not directed at children and we do not knowingly collect personal information from children.",
+      body: "Re-touch is not directed at children and we do not knowingly collect personal information from children.",
     },
     {
       heading: "Changes",
