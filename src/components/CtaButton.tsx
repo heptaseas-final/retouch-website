@@ -15,7 +15,7 @@ export default function CtaButton({ label }: { label: string }) {
   }
 
   return (
-    <a className="btn btn-primary sheen" href={APP_LINK}>
+    <a className="btn btn-primary" href={APP_LINK}>
       {label}
     </a>
   );
