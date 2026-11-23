@@ -109,9 +109,16 @@ export default function Home() {
 
       <section className="band-tight">
         <div className="container">
-          <div className="final-cta">
-            <h2>{finalCta.headline}</h2>
-            <CtaButton label={finalCta.cta} />
+          <div className="ticket">
+            <div className="ticket-stub">
+              <p className="ticket-label">Admit one</p>
+              <p className="ticket-script">Try me</p>
+            </div>
+            <span className="ticket-perf" aria-hidden="true" />
+            <div className="ticket-main">
+              <h2>{finalCta.headline}</h2>
+              <CtaButton label={finalCta.cta} />
+            </div>
           </div>
         </div>
       </section>
