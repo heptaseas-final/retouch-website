@@ -53,6 +53,9 @@ export default function Home() {
 
       <section className="hook band" aria-labelledby="hook-heading">
         <div className="container">
+          <span className="hook-sparkle" aria-hidden="true">
+            <Sparkle size={16} />
+          </span>
           <h2 className="hook-question" id="hook-heading">
             {hook.question}
           </h2>
@@ -92,7 +95,10 @@ export default function Home() {
 
       <section className="band" aria-labelledby="roadmap-heading">
         <div className="container">
-          <p className="eyebrow">Roadmap</p>
+          <p className="eyebrow">
+            Roadmap
+            <Sparkle size={11} />
+          </p>
           <h2 className="roadmap-line" id="roadmap-heading">
             {roadmap.line}
           </h2>
