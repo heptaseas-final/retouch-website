@@ -4,7 +4,7 @@
  */
 
 /** TestFlight link for the "Try Retouch" button. */
-export const APP_LINK = "https://testflight.apple.com/join/a6sEP244";
+export const APP_LINK = "https://apps.apple.com/id/app/re-touch-the-better-mirror/id6827142921";
 
 /**
  * Public support address. Shown on /support and in the footer, and referenced
