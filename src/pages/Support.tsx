@@ -5,9 +5,9 @@ import { SUPPORT_EMAIL, hasSupportEmail } from "../config";
 
 export default function Support() {
   useDocumentMeta({
-    title: "Retouch Support",
+    title: "Re-touch Support",
     description:
-      "Answers about camera permission, auto lighting, gesture zoom, and supported devices, plus how to reach the Retouch team.",
+      "Answers about camera permission, auto lighting, gesture zoom, and supported devices, plus how to reach the Re-touch team.",
     path: "/support",
   });
 
@@ -15,7 +15,7 @@ export default function Support() {
     <section className="band">
       <div className="container">
         <div className="page-header">
-          <h1 className="page-title">Retouch Support</h1>
+          <h1 className="page-title">Re-touch Support</h1>
           <p className="lede">
             Something not working as you expect? Start with the questions below.
             If none of them covers it, write to us.

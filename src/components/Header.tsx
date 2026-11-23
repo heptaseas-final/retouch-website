@@ -7,7 +7,7 @@ export default function Header() {
       <div className="container">
         <Link to="/" className="brand">
           <img className="brand-mark" src={appIcon} alt="" width={32} height={32} />
-          Retouch
+          Re-touch
         </Link>
         <nav className="site-nav" aria-label="Main">
           <NavLink to="/support">Support</NavLink>

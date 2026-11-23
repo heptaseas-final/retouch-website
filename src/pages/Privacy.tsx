@@ -8,9 +8,9 @@ import {
 
 export default function Privacy() {
   useDocumentMeta({
-    title: "Retouch Privacy Policy",
+    title: "Re-touch Privacy Policy",
     description:
-      "What Retouch does with your camera, photos, and analytics data: camera processing stays on your device, and Mixpanel analytics receives a random device identifier and usage data.",
+      "What Re-touch does with your camera, photos, and analytics data: camera processing stays on your device, and Mixpanel analytics receives a random device identifier and usage data.",
     path: "/privacy",
   });
 

@@ -14,7 +14,7 @@ import {
 
 export default function Home() {
   useDocumentMeta({
-    title: "Retouch, a real mirror on your phone",
+    title: "Re-touch, a real mirror on your phone",
     description: hero.description,
     path: "/",
   });
@@ -34,7 +34,7 @@ export default function Home() {
             <div className="hero-copy">
               <p className="hero-wordmark">
                 <img src={appIcon} alt="" width={52} height={52} />
-                <span>Retouch</span>
+                <span>Re-touch</span>
               </p>
               <h1 className="hero-title">{hero.headline}</h1>
               <p className="lede">{hero.description}</p>
@@ -66,7 +66,7 @@ export default function Home() {
       <section className="band" aria-labelledby="features-heading">
         <div className="container">
           <h2 className="visually-hidden" id="features-heading">
-            What Retouch does
+            What Re-touch does
           </h2>
           <div className="feature-list">
             {features.map((feature, index) => (
